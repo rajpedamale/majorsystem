@@ -1,0 +1,3 @@
+export const GENERATE_RANDOM_NUMBERS = "GENERATE_RANDOM_NUMBERS";
+export const FORWARD = "FORWARD";
+export const BACKWARD = "BACKWARD";
