@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log*
+src/components/__snapshots__/
 
 # Runtime data
 pids
