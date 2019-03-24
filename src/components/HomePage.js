@@ -8,7 +8,7 @@ const HomePage = () => {
       <h2>Get started</h2>
       <ol>
         <li>
-          Practice using <Link to="/randomnumbers">random numbesr</Link>
+          Practice using <Link to="/randomnumbers">random numbers</Link>
         </li>
       </ol>
     </div>
