@@ -1,0 +1,10 @@
+.nav-buttons{
+  display: block;
+  margin: auto;
+}
+.nav-link {
+  color: white;
+}
+.nav-link.active {
+  font-weight: bold;
+}

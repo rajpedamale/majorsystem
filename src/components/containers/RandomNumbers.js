@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Container, Row, Col, Button } from "reactstrap";
 
 import * as actions from "../../actions/randomNumbersActions";
 
@@ -18,32 +19,39 @@ class RandomNumbersPage extends Component {
     this.props.actions.backward(this.props.currentLocation);
   };
 
-  renderNumbers = () => {
-    if (this.props.randomNumbers.length === 0) {
-      return "";
-    }
-    return (
-      <div className="ui card">
-        <div className="content">
-          <div className="center aligned header">
-            {this.props.randomNumbers[this.props.currentLocation]}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   render() {
     return (
-      <div className="ui middle aligned center aligned grid">
-        <button className="ui button" onClick={this.decrementCurrentLocation}>
-          Previous
-        </button>
-        {this.renderNumbers()}
-        <button className="ui button" onClick={this.incrementCurrentLocation}>
-          Next
-        </button>
-      </div>
+      <Container>
+        <Row>
+          <Col sm="3" className="nav-buttons">
+            <Button
+              size="lg"
+              color="primary"
+              block={true}
+              onClick={this.decrementCurrentLocation}
+            >
+              Previous
+            </Button>
+          </Col>
+          <Col sm="6">
+            <div className="main-content display-1 text-center">
+              <span className="align-middle">
+                {this.props.randomNumbers[this.props.currentLocation]}
+              </span>
+            </div>
+          </Col>
+          <Col sm="3" className="nav-buttons">
+            <Button
+              size="lg"
+              color="primary"
+              block={true}
+              onClick={this.incrementCurrentLocation}
+            >
+              Next
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
