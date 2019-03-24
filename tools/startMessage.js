@@ -1,5 +1,7 @@
-import {chalkSuccess} from './chalkConfig';
+import { chalkSuccess } from "./chalkConfig";
+import logger from "./logger";
 
-/* eslint-disable no-console */
-
-console.log(chalkSuccess('Starting app in dev mode...'));
+logger.log({
+  level: "info",
+  message: chalkSuccess("Starting app in dev mode...")
+});
