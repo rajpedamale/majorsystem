@@ -9,7 +9,26 @@ import * as actions from "../../actions/randomNumbersActions";
 class RandomNumbersPage extends Component {
   componentDidMount() {
     this.props.actions.generateRandomNumbers();
+    document.addEventListener("keydown", this._handleKeyDown);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this._handleKeyDown);
+  }
+
+  _handleKeyDown = e => {
+    switch (e.keyCode) {
+      case 37: // Left
+      case 38: // Up
+        this.decrementCurrentLocation();
+        break;
+      case 39: // Right
+      case 40: // Down
+        this.incrementCurrentLocation();
+        break;
+      default:
+    }
+  };
 
   incrementCurrentLocation = () => {
     this.props.actions.forward(this.props.currentLocation);
