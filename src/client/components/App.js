@@ -1,7 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import { Route, Switch } from "react-router-dom";
 import React from "react";
-import { hot } from "react-hot-loader";
+import { hot } from "react-hot-loader/index";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "reactstrap";

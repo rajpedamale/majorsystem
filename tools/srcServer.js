@@ -1,6 +1,3 @@
-// This file configures the development web server
-// which supports hot reloading and synchronized testing.
-
 import express from "express";
 import path from "path";
 import open from "open";
@@ -8,12 +5,16 @@ import webpack from "webpack";
 import historyApiFallback from "connect-history-api-fallback";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+//import proxy from "express-http-proxy";
+
 import config from "../webpack.config.dev";
 import logger from "./logger";
 
 const port = 3000;
 const app = express();
 const bundler = webpack(config);
+
+//app.use("/api", proxy());
 
 app.use(historyApiFallback());
 
@@ -26,7 +27,7 @@ app.use(
 
 app.use(webpackHotMiddleware(bundler));
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../src/index.html"));
 });
 
