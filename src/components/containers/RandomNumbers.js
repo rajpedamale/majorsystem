@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Container, Row, Col, Button } from "reactstrap";
 import { Swipeable } from "react-swipeable";
 
 import * as actions from "../../actions/randomNumbersActions";
+import RandomNumberContent from "./RandomNumberContent";
+import Timer from "../Timer";
 
 class RandomNumbersPage extends Component {
   componentDidMount() {
@@ -47,55 +48,36 @@ class RandomNumbersPage extends Component {
   };
 
   render() {
+    if (this.props.randomNumbers.length === 0) return null;
+
+    const propsForContent = {
+      decrementCurrentLocation: this.decrementCurrentLocation,
+      randomNumber: this.props.randomNumbers[this.props.currentLocation],
+      incrementCurrentLocation: this.incrementCurrentLocation
+    };
+
     return (
-      <Swipeable {...this.swipeConfig}>
-        <Container>
-          <Row>
-            <Col sm="3" className="nav-buttons">
-              <Button
-                size="lg"
-                color="primary"
-                block={true}
-                onClick={this.decrementCurrentLocation}
-              >
-                Previous
-              </Button>
-            </Col>
-            <Col sm="6">
-              <div className="main-content display-1 text-center">
-                <span className="align-middle">
-                  {this.props.randomNumbers[this.props.currentLocation]}
-                </span>
-              </div>
-            </Col>
-            <Col sm="3" className="nav-buttons">
-              <Button
-                size="lg"
-                color="primary"
-                block={true}
-                onClick={this.incrementCurrentLocation}
-              >
-                Next
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </Swipeable>
+      <Fragment>
+        <Swipeable {...this.swipeConfig}>
+          <RandomNumberContent {...propsForContent} />
+        </Swipeable>
+        <Timer />
+      </Fragment>
     );
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     randomNumbers: state.randomNumbers,
     currentLocation: state.currentLocation
   };
-}
-function mapDispatchToProps(dispatch) {
+};
+const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(actions, dispatch)
   };
-}
+};
 
 RandomNumbersPage.propTypes = {
   randomNumbers: PropTypes.array.isRequired,
