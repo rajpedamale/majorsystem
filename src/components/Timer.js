@@ -27,11 +27,16 @@ class Timer extends Component {
     this.timer.stop();
   }
 
-  render() {
-    const { time, reset } = this.props;
+  componentDidUpdate() {
+    const { reset } = this.props;
     if (reset) {
       this.createNewTimer();
     }
+  }
+
+  render() {
+    const { time } = this.props;
+
     return <div>{time}</div>;
   }
 }
