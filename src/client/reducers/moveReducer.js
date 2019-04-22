@@ -1,7 +1,7 @@
 import initialState from "./initialState";
-import { FORWARD } from "../constants/actionTypes";
+import { FORWARD, BACKWARD } from "../constants/actionTypes";
 
-export default function forwardReducer(
+export default function moveReducer(
   state = initialState.currentLocation,
   action
 ) {
@@ -10,7 +10,9 @@ export default function forwardReducer(
   };
   switch (action.type) {
     case FORWARD:
+    case BACKWARD:
       return getCurrentLocation(action.payload);
+    default:
+      return state;
   }
-  return state;
 }

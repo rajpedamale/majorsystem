@@ -61,6 +61,7 @@ class RandomNumbersPage extends Component {
         <Swipeable {...this.swipeConfig}>
           <RandomNumberContent {...propsForContent} />
         </Swipeable>
+        <div className=".col">{this.props.currentLocation}</div>
         <Timer />
       </Fragment>
     );

@@ -5,7 +5,6 @@ import webpack from "webpack";
 import historyApiFallback from "connect-history-api-fallback";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
-//import proxy from "express-http-proxy";
 
 import config from "../webpack.config.dev";
 import logger from "./logger";
@@ -13,8 +12,6 @@ import logger from "./logger";
 const port = 3000;
 const app = express();
 const bundler = webpack(config);
-
-//app.use("/api", proxy());
 
 app.use(historyApiFallback());
 
@@ -28,7 +25,7 @@ app.use(
 app.use(webpackHotMiddleware(bundler));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../src/index.html"));
+  res.sendFile(path.join(__dirname, "../src/client/index.html"));
 });
 
 app.listen(port, err => {
