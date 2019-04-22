@@ -8,3 +8,7 @@ body > .grid {
 .column {
   max-width: 450px;
 }
+
+.navbar-toggler {
+  border-color: darkgray;
+}

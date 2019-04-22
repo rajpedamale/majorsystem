@@ -4,6 +4,7 @@ logs
 src/client/components/__snapshots__/
 
 # Runtime data
+src/config.js
 pids
 *.pid
 *.seed
